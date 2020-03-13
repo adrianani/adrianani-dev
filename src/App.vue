@@ -1,32 +1,43 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view/>
+	<div class="wrapper">
+		<Header />
+		<div>
+			<router-view/>
+			<aside class='social'>
+				<SocialLink url="https://github.com/adrianani/" name="github" :icon="['fab', 'github']"/>
+				<SocialLink url="https://twitter.com/adrianani99" name="twitter" :icon="['fab', 'twitter']"/>
+				<SocialLink url="#" name="email" :icon="['fas', 'at']" @click.native="emailClick" />
+			</aside>
+		</div>
+	</div>
   </div>
 </template>
 
 <style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
-
-#nav {
-  padding: 30px;
-
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
-    }
-  }
-}
+	@import '@/styles/global.scss';
 </style>
+
+<script>
+import Header from '@/components/Header';
+import SocialLink from '@/components/SocialLink';
+
+export default {
+	name: 'App',
+	components: {
+		Header,
+		SocialLink
+	},
+	methods: {
+		emailClick(e) {
+			e.preventDefault();
+			const textarea = document.createElement('textarea');
+			textarea.value = 'ani.adrian99andrei@gmail.com';
+			document.body.appendChild(textarea);
+			textarea.select();
+			document.execCommand('copy');
+			document.body.removeChild(textarea);
+		}
+	}
+}
+</script>
