@@ -1,8 +1,8 @@
 <template>
 	<article>
-		<router-link class="cover" :style="{backgroundImage: `url(${data.image})`}"></router-link>
+		<div class="cover" :style="{backgroundImage: `url(${data.image})`}"></div>
 		<div class="text">
-			<router-link class="title">{{data.name}}</router-link>
+			<span class="title">{{data.name}}</span>
 			<div class="tags">
 				<router-link class="tag" v-for='tag in data.tags' :key='tag' :to="{name: 'filter', params: {filter: tag}}" @mouseenter.native="mouseOver" @mouseleave.native="mouseOut">
 					{{tag}}
